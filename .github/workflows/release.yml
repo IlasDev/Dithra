@@ -1,0 +1,65 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+          
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+        
+      - name: Build release APK
+        run: ./gradlew assembleRelease
+        
+      - name: Get version from tag
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+        
+      - name: Rename APK files
+        run: |
+          cd app/build/outputs/apk/release
+          
+          # Find and rename universal APK
+          if ls *universal*.apk 1> /dev/null 2>&1; then
+            mv *universal*.apk "../../../../../Dithra-${{ env.VERSION }}-universal.apk"
+          elif ls *release*.apk 1> /dev/null 2>&1; then
+            mv *release*.apk "../../../../../Dithra-${{ env.VERSION }}-universal.apk"
+          fi
+          
+          # Find and rename arm64-v8a APK
+          if ls *arm64-v8a*.apk 1> /dev/null 2>&1; then
+            mv *arm64-v8a*.apk "../../../../../Dithra-${{ env.VERSION }}-arm64-v8a.apk"
+          fi
+          
+          # Find and rename armeabi-v7a APK
+          if ls *armeabi-v7a*.apk 1> /dev/null 2>&1; then
+            mv *armeabi-v7a*.apk "../../../../../Dithra-${{ env.VERSION }}-armeabi-v7a.apk"
+          fi
+          
+          # Find and rename x86_64 APK
+          if ls *x86_64*.apk 1> /dev/null 2>&1; then
+            mv *x86_64*.apk "../../../../../Dithra-${{ env.VERSION }}-x86_64.apk"
+          fi
+          
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "Dithra-*.apk"
+          generateReleaseNotes: true
+          prerelease: ${{ contains(github.ref_name, '-') }}

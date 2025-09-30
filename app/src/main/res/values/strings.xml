@@ -1,0 +1,141 @@
+<resources>
+    <string name="app_name">Dithra</string>
+
+    <!-- Common actions -->
+    <string name="close">Close</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="export">Export</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="add">Add</string>
+    <string name="apply">Apply</string>
+    <string name="upload">Upload</string>
+
+    <!-- Navigation -->
+    <string name="settings">Settings</string>
+    <string name="back">Back</string>
+
+    <!-- Content descriptions -->
+    <string name="content_desc_add_palette">Add palette</string>
+    <string name="content_desc_more_colors">More colors</string>
+    <string name="content_desc_selected">Selected</string>
+    <string name="content_desc_palette">Palette</string>
+    <string name="content_desc_processed_image">Processed Image</string>
+    <string name="content_desc_add_color">Add color</string>
+    <string name="content_desc_localized_description">Localized description</string>
+
+    <!-- Palette management -->
+    <string name="palette_new">New palette</string>
+    <string name="palette_edit">Edit palette</string>
+    <string name="palette_choose">Choose palette</string>
+    <string name="palette_your">Your palettes</string>
+    <string name="palette_builtin">Built-in palettes</string>
+    <string name="palette_black_and_white">Black &amp; White</string>
+    <string name="palette_manage">Manage your palette</string>
+    <string name="palette_export_clipboard">Export to clipboard</string>
+    <string name="palette_copied_clipboard">Palette copied to clipboard</string>
+    <string name="palette_import_clipboard">Import from clipboard</string>
+    <string name="palette_untitled">Untitled palette</string>
+    <string name="palette_custom">Custom</string>
+    <string name="palette_your_palette">Your palette</string>
+
+    <!-- Palette creation/editing -->
+    <string name="palette_name_label">Name</string>
+    <string name="palette_colors_count">Colors (%1$d/%2$d)</string>
+    <string name="palette_color_edit_instruction">Tap a color to edit, long-press to remove.</string>
+    <string name="palette_max_colors_reached">Maximum of %d colors reached</string>
+    <string name="palette_add_one_color">Add at least one color</string>
+
+    <!-- Color picker -->
+    <string name="color_picker_title">Pick a color</string>
+    <string name="color_picker_hex_label">Hex</string>
+    <string name="color_picker_r_label">R</string>
+    <string name="color_picker_g_label">G</string>
+    <string name="color_picker_b_label">B</string>
+
+    <!-- Dithering methods -->
+    <string name="dithering_choose_method">Choose dithering method</string>
+    <string name="dithering_method_bitmap">Bitmap</string>
+    <string name="dithering_method_floyd_steinberg">Floyd-Steinberg</string>
+    <string name="dithering_method_atkinson">Atkinson</string>
+    <string name="dithering_method_jarvis_judice_ninke">Jarvis, Judice &amp; Ninke</string>
+    <string name="dithering_method_stucki">Stucki</string>
+    <string name="dithering_method_bayer_2x2">Bayer 2×2</string>
+    <string name="dithering_method_bayer_4x4">Bayer 4×4</string>
+    <string name="dithering_method_bayer_8x8">Bayer 8×8</string>
+    <string name="dithering_method_clustered_4x4">Clustered 4×4</string>
+
+    <!-- Controls -->
+    <string name="controls_method_label">Method</string>
+    <string name="controls_threshold_label">Threshold:</string>
+    <string name="controls_factor_label">Factor:</string>
+
+    <!-- Export -->
+    <string name="export_title">Export Image</string>
+    <string name="export_format_title">Format</string>
+    <string name="export_type_label">Export type</string>
+    <string name="export_resolution_label">Resolution</string>
+    <string name="export_options_title">Options</string>
+    <string name="export_transparent_white_label">White pixels transparent</string>
+    <string name="export_transparent_white_description">Replace white pixels with transparency when supported</string>
+    <string name="export_preparing">Preparing export…</string>
+
+    <!-- Export types -->
+    <string name="export_type_png">PNG</string>
+    <string name="export_type_svg">SVG</string>
+
+    <!-- Export resolutions -->
+    <string name="export_resolution_original">Original size</string>
+    <string name="export_resolution_actual">Actual size</string>
+
+    <!-- Settings -->
+    <string name="settings_appearance_title">Appearance</string>
+    <string name="settings_theme_label">Theme</string>
+    <string name="settings_dynamic_colors_label">Dynamic colors</string>
+    <string name="settings_dynamic_colors_description">Use colors from your wallpaper</string>
+    <string name="settings_processing_title">Processing</string>
+    <string name="settings_png_background_label">PNG background</string>
+    <string name="settings_information_title">Information</string>
+    <string name="settings_version_label">Version</string>
+    <string name="settings_version_description">Current app version</string>
+    <string name="settings_source_code_label">Source code</string>
+    <string name="settings_source_code_description">View the project on GitHub</string>
+
+    <!-- Theme modes -->
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+
+    <!-- Transparency modes -->
+    <string name="transparency_black">Black</string>
+    <string name="transparency_white">White</string>
+
+    <!-- Color palette categories -->
+    <string name="palette_category_classic_computer">Classic Computer</string>
+    <string name="palette_category_handheld">Handheld</string>
+    <string name="palette_category_modern">Modern</string>
+    <string name="palette_category_synthwave">Synthwave</string>
+    <string name="palette_category_retro">Retro</string>
+    <string name="palette_category_atmospheric">Atmospheric</string>
+    <string name="palette_category_custom">Custom</string>
+
+    <!-- Error messages -->
+    <string name="error_clipboard_empty">Clipboard is empty</string>
+    <string name="error_clipboard_invalid_palette">Clipboard does not contain a valid palette</string>
+    <string name="error_palette_name_too_long">Palette name exceeds 40 character limit</string>
+    <string name="error_svg_export">SVG export should use saveSVGToFile</string>
+    <string name="error_colorcount_mismatch">colorCount must match the number of colors provided</string>
+    <string name="error_unsupported_image_format">Unsupported image format</string>
+
+    <!-- Placeholders and defaults -->
+    <string name="placeholder_pick_image">Pick an image</string>
+    <string name="placeholder_imported_palette">Imported Palette</string>
+    <string name="filename_prefix_dithered">dithered_</string>
+
+    <!-- File format strings -->
+    <string name="date_format_export">yyyyMMdd_HHmmss</string>
+
+    <!-- URLs -->
+    <string name="url_github_repo">https://github.com/IlasDev/Dithra</string>
+</resources>
