@@ -14,8 +14,8 @@ android {
         applicationId = "dev.ilas.dithra"
         minSdk = 24
         targetSdk = 36
-        versionCode = 2
-        versionName = "1.0.0-beta02"
+        versionCode = 3
+        versionName = "1.0.0-beta03"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
