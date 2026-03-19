@@ -51,6 +51,7 @@ fun ImageDisplaySection(
                     painter = BitmapPainter(bitmap.asImageBitmap()),
                     contentDescription = "Processed Image",
                     modifier = Modifier
+                        .fillMaxSize()
                         .let { 
                             if (onClick != null) {
                                 it.clickable(
