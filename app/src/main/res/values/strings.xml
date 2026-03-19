@@ -92,10 +92,12 @@
     <!-- Settings -->
     <string name="settings_appearance_title">Appearance</string>
     <string name="settings_theme_label">Theme</string>
+    <string name="settings_theme_description">Choose your preferred app theme</string>
     <string name="settings_dynamic_colors_label">Dynamic colors</string>
     <string name="settings_dynamic_colors_description">Use colors from your wallpaper</string>
     <string name="settings_processing_title">Processing</string>
     <string name="settings_png_background_label">PNG background</string>
+    <string name="settings_png_background_description">Select the color used to fill transparent pixels in images</string>
     <string name="settings_information_title">Information</string>
     <string name="settings_version_label">Version</string>
     <string name="settings_version_description">Current app version</string>

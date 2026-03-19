@@ -69,84 +69,91 @@ fun SettingsScreen(
         modifier = modifier
             .fillMaxSize()
             .nestedScroll(scrollBehavior.nestedScrollConnection)
-            .padding(16.dp, 0.dp, 16.dp, 16.dp)
     ) {
-            DialogScrollColumn {
-                DialogCategory(
-                    title = context.getString(R.string.settings_appearance_title),
-                    icon = Icons.Outlined.Palette
-                ) {
-                    DialogDropdownRow(
-                        label = context.getString(R.string.settings_theme_label),
-                        selectedValue = settings.themeMode.getDisplayName(context),
-                        options = ThemeMode.entries.map { it.getDisplayName(context) },
-                        onSelectionChanged = { displayName: String ->
-                            ThemeMode.entries
-                                .find { it.getDisplayName(context) == displayName }
-                                ?.let(onThemeModeChanged)
-                        },
-                        index = 0,
-                        totalItems = 2,
-                        isSettings = true
-                    )
+        DialogScrollColumn(
+            modifier = Modifier.padding(horizontal = 16.dp)
+        ) {
+            Spacer(modifier = Modifier.height(0.dp))
 
-                    DialogToggleRow(
-                        label = context.getString(R.string.settings_dynamic_colors_label),
-                        description = context.getString(R.string.settings_dynamic_colors_description),
-                        checked = settings.dynamicColors,
-                        onCheckedChange = onDynamicColorsChanged,
-                        index = 1,
-                        totalItems = 2,
-                        isSettings = true
-                    )
-                }
+            DialogCategory(
+                title = context.getString(R.string.settings_appearance_title),
+                icon = Icons.Outlined.Palette
+            ) {
+                DialogDropdownRow(
+                    label = context.getString(R.string.settings_theme_label),
+                    selectedValue = settings.themeMode.getDisplayName(context),
+                    options = ThemeMode.entries.map { it.getDisplayName(context) },
+                    onSelectionChanged = { displayName: String ->
+                        ThemeMode.entries
+                            .find { it.getDisplayName(context) == displayName }
+                            ?.let(onThemeModeChanged)
+                    },
+                    supportingText = context.getString(R.string.settings_theme_description),
+                    index = 0,
+                    totalItems = 2,
+                    isSettings = true
+                )
 
-                DialogCategory(
-                    title = context.getString(R.string.settings_processing_title),
-                    icon = Icons.Outlined.Image
-                ) {
-                    DialogDropdownRow(
-                        label = context.getString(R.string.settings_png_background_label),
-                        selectedValue = settings.transparencyMode.getDisplayName(context),
-                        options = TransparencyMode.entries.map { it.getDisplayName(context) },
-                        onSelectionChanged = { displayName: String ->
-                            TransparencyMode.entries
-                                .find { it.getDisplayName(context) == displayName }
-                                ?.let(onTransparencyModeChanged)
-                        },
-                        index = 0,
-                        totalItems = 1,
-                        isSettings = true
-                    )
-                }
-
-                val context = context
-                DialogCategory(
-                    title = context.getString(R.string.settings_information_title),
-                    icon = Icons.Outlined.Info
-                ) {
-                    SettingsInfoRow(
-                        label = context.getString(R.string.settings_version_label),
-                        value = BuildConfig.VERSION_NAME,
-                        description = context.getString(R.string.settings_version_description),
-                        index = 0,
-                        totalItems = 2
-                    )
-
-                    SettingsInfoRow(
-                        label = context.getString(R.string.settings_source_code_label),
-                        value = "",
-                        description = context.getString(R.string.settings_source_code_description),
-                        index = 1,
-                        totalItems = 2,
-                        onClick = {
-                            val intent = Intent(Intent.ACTION_VIEW,
-                                context.getString(R.string.url_github_repo).toUri())
-                            context.startActivity(intent)
-                        }
-                    )
-                }
+                DialogToggleRow(
+                    label = context.getString(R.string.settings_dynamic_colors_label),
+                    description = context.getString(R.string.settings_dynamic_colors_description),
+                    checked = settings.dynamicColors,
+                    onCheckedChange = onDynamicColorsChanged,
+                    index = 1,
+                    totalItems = 2,
+                    isSettings = true
+                )
             }
+
+            DialogCategory(
+                title = context.getString(R.string.settings_processing_title),
+                icon = Icons.Outlined.Image
+            ) {
+                DialogDropdownRow(
+                    label = context.getString(R.string.settings_png_background_label),
+                    selectedValue = settings.transparencyMode.getDisplayName(context),
+                    options = TransparencyMode.entries.map { it.getDisplayName(context) },
+                    onSelectionChanged = { displayName: String ->
+                        TransparencyMode.entries
+                            .find { it.getDisplayName(context) == displayName }
+                            ?.let(onTransparencyModeChanged)
+                    },
+                    supportingText = context.getString(R.string.settings_png_background_description),
+                    index = 0,
+                    totalItems = 1,
+                    isSettings = true
+                )
+            }
+
+            val context = context
+            DialogCategory(
+                title = context.getString(R.string.settings_information_title),
+                icon = Icons.Outlined.Info
+            ) {
+                SettingsInfoRow(
+                    label = context.getString(R.string.settings_version_label),
+                    value = BuildConfig.VERSION_NAME,
+                    description = context.getString(R.string.settings_version_description),
+                    index = 0,
+                    totalItems = 2
+                )
+
+                SettingsInfoRow(
+                    label = context.getString(R.string.settings_source_code_label),
+                    value = "",
+                    description = context.getString(R.string.settings_source_code_description),
+                    index = 1,
+                    totalItems = 2,
+                    onClick = {
+                        val intent = Intent(Intent.ACTION_VIEW,
+                            context.getString(R.string.url_github_repo).toUri())
+                        context.startActivity(intent)
+                    }
+                )
+            }
+            
+            Spacer(modifier = Modifier.height(0.dp))
+        }
     }
 }
 

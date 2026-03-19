@@ -3,8 +3,11 @@ package dev.ilas.dithra.presentation.ui.components
 import android.graphics.Bitmap
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
+import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,13 +25,15 @@ import androidx.compose.ui.unit.sp
  * @param processedBitmap Processed bitmap to display
  * @param isExporting Whether export operation is in progress
  * @param exportProgress Export progress (0.0 to 1.0)
+ * @param onClick Optional callback when the image is clicked
  */
 @Composable
 fun ImageDisplaySection(
     modifier: Modifier = Modifier,
     processedBitmap: Bitmap?,
     isExporting: Boolean = false,
-    exportProgress: Float = 0f
+    exportProgress: Float = 0f,
+    onClick: (() -> Unit)? = null
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
@@ -45,7 +50,18 @@ fun ImageDisplaySection(
                 Image(
                     painter = BitmapPainter(bitmap.asImageBitmap()),
                     contentDescription = "Processed Image",
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .let { 
+                            if (onClick != null) {
+                                it.clickable(
+                                    interactionSource = remember { MutableInteractionSource() },
+                                    indication = null,
+                                    onClick = onClick
+                                )
+                            } else {
+                                it
+                            }
+                        },
                     contentScale = ContentScale.Fit
                 )
             } ?: CircularProgressIndicator()
@@ -83,7 +99,7 @@ private fun ExportProgressOverlay(
                 modifier = Modifier.size(64.dp),
                 color = ProgressIndicatorDefaults.circularColor,
                 strokeWidth = 8.dp,
-                trackColor = ProgressIndicatorDefaults.circularTrackColor,
+                trackColor = ProgressIndicatorDefaults.circularIndeterminateTrackColor,
                 strokeCap = ProgressIndicatorDefaults.CircularDeterminateStrokeCap,
             )
             Spacer(Modifier.height(12.dp))

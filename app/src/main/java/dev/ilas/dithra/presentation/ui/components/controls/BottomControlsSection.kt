@@ -4,7 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Palette
+import androidx.compose.material.icons.outlined.FileUpload
 import androidx.compose.material.icons.outlined.Save
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -16,13 +16,13 @@ import androidx.compose.ui.unit.dp
  * Bottom action buttons for palette selection and save operations.
  *
  * @param modifier Optional modifier for styling
- * @param onPaletteClick Callback when palette button is clicked
+ * @param onUploadClick Callback when upload button is clicked
  * @param onSaveClick Callback when save button is clicked
  */
 @Composable
 fun BottomControlsSection(
     modifier: Modifier = Modifier,
-    onPaletteClick: () -> Unit = {},
+    onUploadClick: () -> Unit = {},
     onSaveClick: () -> Unit = {}
 ) {
     Row(
@@ -31,7 +31,7 @@ fun BottomControlsSection(
         verticalAlignment = Alignment.CenterVertically
     ) {
         IconButton(
-            onClick = onPaletteClick,
+            onClick = onUploadClick,
             modifier = Modifier
                 .size(80.dp, 60.dp)
                 .background(
@@ -40,8 +40,8 @@ fun BottomControlsSection(
                 )
         ) {
             Icon(
-                imageVector = Icons.Outlined.Palette,
-                contentDescription = "Palette",
+                imageVector = Icons.Outlined.FileUpload,
+                contentDescription = "Upload",
                 tint = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }

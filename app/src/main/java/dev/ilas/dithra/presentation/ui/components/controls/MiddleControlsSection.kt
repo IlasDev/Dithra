@@ -8,8 +8,8 @@ import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AdUnits
-import androidx.compose.material.icons.outlined.FileUpload
 import androidx.compose.material.icons.outlined.GridView
+import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.material3.*
 import androidx.compose.material3.ButtonGroupDefaults
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
@@ -36,7 +36,7 @@ import kotlin.math.roundToInt
  * @param onFactorValueChange Callback when factor value changes
  * @param selectedMethod Currently selected dithering method
  * @param onMethodClick Callback when method button is clicked
- * @param onUploadClick Callback when upload button is clicked
+ * @param onPaletteClick Callback when palette button is clicked
  * @param modifier Optional modifier for styling
  */
 @OptIn(ExperimentalMaterial3Api::class)
@@ -48,7 +48,7 @@ fun MiddleControlsSection(
     onFactorValueChange: (Float) -> Unit,
     selectedMethod: DitheringMethod,
     onMethodClick: () -> Unit,
-    onUploadClick: () -> Unit,
+    onPaletteClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val showFactorSlider = selectedMethod.supportsFactor()
@@ -60,7 +60,7 @@ fun MiddleControlsSection(
     ) {
         val options = listOf("1", "2", "3")
         val unCheckedIcons =
-            listOf(Icons.Outlined.GridView, Icons.Outlined.AdUnits, Icons.Outlined.FileUpload)
+            listOf(Icons.Outlined.GridView, Icons.Outlined.AdUnits, Icons.Outlined.Palette)
 
         Row(
             horizontalArrangement = Arrangement.spacedBy(ButtonGroupDefaults.ConnectedSpaceBetween),
@@ -102,7 +102,7 @@ fun MiddleControlsSection(
                     onClick = {
                         when (index) {
                             0 -> onMethodClick()
-                            2 -> onUploadClick()
+                            2 -> onPaletteClick()
                         }
                     },
                     interactionSource = if (index == 1) NoInteractionSource() else remember { MutableInteractionSource() },

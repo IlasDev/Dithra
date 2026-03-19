@@ -212,6 +212,11 @@ fun Material3ExpressiveScreen(viewModel: MainViewModel, modifier: Modifier = Mod
                         processedBitmap = processedBitmap,
                         isExporting = isExporting,
                         exportProgress = exportProgress,
+                        onClick = {
+                            imagePickerLauncher.launch(
+                                PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                            )
+                        },
                         modifier = Modifier
                             .weight(0.6f)
                             .fillMaxHeight()
@@ -249,17 +254,17 @@ fun Material3ExpressiveScreen(viewModel: MainViewModel, modifier: Modifier = Mod
                             onFactorValueChange = { viewModel.updateFactor(it) },
                             selectedMethod = uiState.ditheringMethod,
                             onMethodClick = { showDitheringBottomSheet = true },
-                            onUploadClick = {
-                                imagePickerLauncher.launch(
-                                    PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
-                                )
-                            }
+                            onPaletteClick = { showPaletteBottomSheet = true }
                         )
 
                         Spacer(modifier = Modifier.height(16.dp))
 
                         BottomControlsSection(
-                            onPaletteClick = { showPaletteBottomSheet = true },
+                            onUploadClick = {
+                                imagePickerLauncher.launch(
+                                    PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                                )
+                            },
                             onSaveClick = { showExportDialog = true }
                         )
                     }
@@ -276,6 +281,11 @@ fun Material3ExpressiveScreen(viewModel: MainViewModel, modifier: Modifier = Mod
                         processedBitmap = processedBitmap,
                         isExporting = isExporting,
                         exportProgress = exportProgress,
+                        onClick = {
+                            imagePickerLauncher.launch(
+                                PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                            )
+                        },
                         modifier = Modifier.weight(1f)
                     )
 
@@ -303,17 +313,17 @@ fun Material3ExpressiveScreen(viewModel: MainViewModel, modifier: Modifier = Mod
                         onFactorValueChange = { viewModel.updateFactor(it) },
                         selectedMethod = uiState.ditheringMethod,
                         onMethodClick = { showDitheringBottomSheet = true },
-                        onUploadClick = {
-                            imagePickerLauncher.launch(
-                                PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
-                            )
-                        }
+                        onPaletteClick = { showPaletteBottomSheet = true }
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
 
                     BottomControlsSection(
-                        onPaletteClick = { showPaletteBottomSheet = true },
+                        onUploadClick = {
+                            imagePickerLauncher.launch(
+                                PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                            )
+                        },
                         onSaveClick = { showExportDialog = true }
                     )
                 }

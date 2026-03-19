@@ -62,7 +62,7 @@ fun ThresholdSliderSection(
                 )
             }
             Text(
-                text = "Upload",
+                text = "Palette",
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
