@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="assets/images/icon.png" title="Dithra" alt="Dithra logo" width="120" />
+    <img src="assets/images/icon.png?v=1" title="Dithra" alt="Dithra logo" width="120" />
     <h1>Dithra</h1>
     <p>
         Apply dithering effects to your images with ease.
