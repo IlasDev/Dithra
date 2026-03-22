@@ -72,15 +72,39 @@ jobs:
           FILTER="^(feat|fix|style|perf|ui|ux|refactor)(\(.+\))?:"
           
           echo "CHANGELOG<<EOF" >> $GITHUB_ENV
+          echo "## What's Changed" >> $GITHUB_ENV
+          
           if [ -z "$PREV_TAG" ]; then
-            echo "Initial release." >> $GITHUB_ENV
-            git log -E -i --grep="$FILTER" --pretty=format:"* %s (%h)" >> $GITHUB_ENV
-          else
-            echo "Changes since $PREV_TAG:" >> $GITHUB_ENV
+            git log -E -i --grep="$FILTER" --pretty=format:"* %s by %an in %h" >> $GITHUB_ENV
             echo "" >> $GITHUB_ENV
-            git log ${PREV_TAG}..HEAD -E -i --grep="$FILTER" --pretty=format:"* %s (%h)" >> $GITHUB_ENV
+          else
+            git log ${PREV_TAG}..HEAD -E -i --grep="$FILTER" --pretty=format:"* %s by %an in %h" >> $GITHUB_ENV
+            echo "" >> $GITHUB_ENV
+            echo "" >> $GITHUB_ENV
+            
+            # Check for new contributors by comparing commit emails
+            git log ${PREV_TAG} --format="%ae" | sort -u > old_authors.txt
+            git log ${PREV_TAG}..HEAD --format="%an|%ae" | sort -u > current_authors.txt
+            
+            HAS_NEW_CONTRIB=false
+            while IFS="|" read -r author_name author_email; do
+              if ! grep -qi "^${author_email}$" old_authors.txt; then
+                if [ "$HAS_NEW_CONTRIB" = false ]; then
+                  echo "## New Contributors" >> $GITHUB_ENV
+                  HAS_NEW_CONTRIB=true
+                fi
+                echo "* ${author_name} made their first contribution" >> $GITHUB_ENV
+              fi
+            done < current_authors.txt
+            
+            if [ "$HAS_NEW_CONTRIB" = true ]; then
+               echo "" >> $GITHUB_ENV
+            fi
+            
+            # Create the full changelog comparison link using GitHub context variables
+            echo "**Full changelog:** https://github.com/${{ github.repository }}/compare/${PREV_TAG}...${{ github.ref_name }}" >> $GITHUB_ENV
           fi
-          echo "" >> $GITHUB_ENV
+          
           echo "EOF" >> $GITHUB_ENV
 
       - name: Create Release
