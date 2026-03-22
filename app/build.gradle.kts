@@ -12,10 +12,10 @@ android {
 
     defaultConfig {
         applicationId = "dev.ilas.dithra"
-        minSdk = 24
+        minSdk = 25
         targetSdk = 36
-        versionCode = 4
-        versionName = "1.0.0-beta04"
+        versionCode = 5
+        versionName = "1.0.0-beta05"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
